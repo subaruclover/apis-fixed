@@ -92,6 +92,8 @@ while (time.time() - start_time) < max_time:
         # print("\n")
 
     time.sleep(60)  # 60s
+    end_time = time.time()
+    print("running time: {:.2f} mins".format((end_time - start_time)/60))
 
         # States  pvc_charge_power[ids], for house E001
         # if ids == "E001":
