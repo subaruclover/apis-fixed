@@ -93,7 +93,7 @@ while (time.time() - start_time) < max_time:
 
     time.sleep(60)  # 60s
     end_time = time.time()
-    print("running time: {:.2f} mins".format((end_time - start_time)/60))
+    print("running time: {:.2f} mins".format((end_time - start_time)/60 * gl.acc))  # real time
 
         # States  pvc_charge_power[ids], for house E001
         # if ids == "E001":
@@ -137,7 +137,7 @@ plt.plot(rsoc_e001, 'g', label="RSOC E001")
 
 plt.xlabel("time")
 plt.ylabel("Power (W) / %")
-plt.title("The default scenario")
+plt.title("The default scenario, E001")
 plt.xlim(0, 359)
 plt.legend()
 plt.show()
