@@ -19,6 +19,9 @@ import time
 
 import requests, json
 import numpy as np
+from matplotlib import pyplot as plt
+import seaborn as sns
+sns.set(style="whitegrid")
 
 import global_var as gl
 import config as conf
@@ -84,9 +87,11 @@ while (time.time() - start_time) < max_time:
               )
         # rsoc_list.append(rsoc[ids])
         agent.store_value(pvc_charge_power[ids], ups_output_power[ids], p2[ids], rsoc[ids])
+
         # refresh every 5 seconds
         # print("\n")
-        time.sleep(60)
+
+    time.sleep(60)  # 60s
 
         # States  pvc_charge_power[ids], for house E001
         # if ids == "E001":
@@ -98,14 +103,39 @@ while (time.time() - start_time) < max_time:
         #     x_e001 = np.concatenate([pv_e001, load_e001, p2_e001, rsoc_e001], axis=-1)
         #     # print(x_e001)  # [39.14 575.58 734.    29.98] E001
 
+rows_e001 = list(range(0, agent.memory_size, 4))
+rows_e002 = [x+1 for x in rows_e001]
+rows_e003 = [x+2 for x in rows_e001]
+rows_e004 = [x+3 for x in rows_e001]
 
-# snooziness = int(input('Enter the amount of seconds you want to run this: '))
-#
-# t = Thread(target=run_file)  # run the run_file function in another thread
-# t.daemon = True  # Python will exit when the main thread exits, even if this thread is still running
-# t.start()
-#
-# # snooziness = int(input('Enter the amount of seconds you want to run this: '))
-# sleep(snooziness)
+pvc_e001 = agent.memory[rows_e001, 0]
+load_e001 = agent.memory[rows_e001, 1]
+p2_e001 = agent.memory[rows_e001, 2]
+rsoc_e001 = agent.memory[rows_e001, 3]
 
+pvc_e002 = agent.memory[rows_e002, 0]
+load_e002 = agent.memory[rows_e002, 1]
+p2_e002 = agent.memory[rows_e002, 2]
+rsoc_e002 = agent.memory[rows_e002, 3]
 
+pvc_e003 = agent.memory[rows_e003, 0]
+load_e003 = agent.memory[rows_e003, 1]
+p2_e003 = agent.memory[rows_e003, 2]
+rsoc_e003 = agent.memory[rows_e003, 3]
+
+pvc_e004 = agent.memory[rows_e004, 0]
+load_e004 = agent.memory[rows_e004, 1]
+p2_e004 = agent.memory[rows_e004, 2]
+rsoc_e004 = agent.memory[rows_e004, 3]
+
+plt.plot(pvc_e001, 'm*-', label="PV E001")
+plt.plot(load_e001, 'y--', label="Load E001")
+plt.plot(p2_e001, 'b', label="p2 E001")
+plt.plot(rsoc_e001, 'g', label="RSOC E001")
+
+plt.xlabel("time")
+plt.ylabel("Power (W) / %")
+plt.title("The default scenario")
+plt.xlim(0, 359)
+plt.legend()
+plt.show()
