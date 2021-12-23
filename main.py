@@ -54,6 +54,7 @@ p2_list = []
 rsoc_list = []
 
 max_time = int(input('Enter the amount of seconds you want to run this: '))
+# 21,600, 6hrs
 start_time = time.time()  # remember when we started
 
 # need to refresh the output data every 5s? time.sleep()
@@ -130,14 +131,53 @@ load_e004 = agent.memory[rows_e004, 1]
 p2_e004 = agent.memory[rows_e004, 2]
 rsoc_e004 = agent.memory[rows_e004, 3]
 
-plt.plot(pvc_e001, 'm*-', label="PV E001")
-plt.plot(load_e001, 'y--', label="Load E001")
-plt.plot(p2_e001, 'b', label="p2 E001")
-plt.plot(rsoc_e001, 'g', label="RSOC E001")
+# fig, axs = plt.subplots(2, 2, figsize=(12, 12))
+fig, ((ax0, ax1), (ax2, ax3)) = plt.subplots(2, 2, figsize=(12, 12))
+ax0_2 = ax0.twinx()
+ax1_2 = ax1.twinx()
+ax2_2 = ax2.twinx()
+ax3_2 = ax3.twinx()
+fig.suptitle("The default scenario, E001-E004")
 
-plt.xlabel("time")
-plt.ylabel("Power (W) / %")
-plt.title("The default scenario, E001")
-plt.xlim(0, 359)
-plt.legend()
+pvc_e001_plot = ax0.plot(pvc_e001[:24], 'm*-', label="PV E001")
+load_e001_plot = ax0.plot(load_e001[:24], 'y--', label="Load E001")
+p2_e001_plot = ax0.plot(p2_e001[:24], 'b', label="p2 E001")
+rsoc_e001_plot = ax0_2.plot(rsoc_e001[:24], 'g', label="RSOC E001")
+ax0.set_xlabel("Hour")
+ax0.set_ylabel("Power (W) / %")
+plots_e001 = pvc_e001_plot + load_e001_plot + p2_e001_plot + rsoc_e001_plot
+labels_e001 = [plot.get_label() for plot in plots_e001]
+ax0.legend(plots_e001, labels_e001, loc='best')
+# ax0_2.legnd()
+
+pvc_e002_plot = ax1.plot(pvc_e002[:24], 'm*-', label="PV E002")
+load_e002_plot = ax1.plot(load_e002[:24], 'y--', label="Load E002")
+p2_e002_plot = ax1.plot(p2_e002[:24], 'b', label="p2 E002")
+rsoc_e002_plot = ax1_2.plot(rsoc_e002[:24], 'g', label="RSOC E002")
+ax1.set_xlabel("Hour")
+ax1.set_ylabel("Power (W) / %")
+plots_e002 = pvc_e002_plot + load_e002_plot + p2_e002_plot + rsoc_e002_plot
+labels_e002 = [plot.get_label() for plot in plots_e002]
+ax1.legend(plots_e002, labels_e002, loc='best')
+
+pvc_e003_plot = ax2.plot(pvc_e003[:24], 'm*-', label="PV E003")
+load_e003_plot = ax2.plot(load_e003[:24], 'y--', label="Load E003")
+p2_e003_plot = ax2.plot(p2_e003[:24], 'b', label="p2 E003")
+rsoc_e003_plot = ax2_2.plot(rsoc_e003[:24], 'g', label="RSOC E003")
+ax2.set_xlabel("Hour")
+ax2.set_ylabel("Power (W) / %")
+plots_e003 = pvc_e003_plot + load_e003_plot + p2_e003_plot + rsoc_e003_plot
+labels_e003 = [plot.get_label() for plot in plots_e003]
+ax2.legend(plots_e003, labels_e003, loc='best')
+
+pvc_e004_plot = ax3.plot(pvc_e004[:24], 'm*-', label="PV E004")
+load_e004_plot = ax3.plot(load_e004[:24], 'y--', label="Load E004")
+p2_e004_plot = ax3.plot(p2_e004[:24], 'b', label="p2 E004")
+rsoc_e004_plot = ax3_2.plot(rsoc_e004[:24], 'g', label="RSOC E004")
+ax3.set_xlabel("Hour")
+ax3.set_ylabel("Power (W) / %")
+plots_e004 = pvc_e004_plot + load_e004_plot + p2_e004_plot + rsoc_e004_plot
+labels_e004 = [plot.get_label() for plot in plots_e004]
+ax3.legend(plots_e004, labels_e004, loc='best')
+
 plt.show()
