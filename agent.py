@@ -9,9 +9,9 @@ import logging.config
 import time
 
 import numpy as np
-import random
-import gym
-from gym.utils import seeding
+# import random
+# import gym
+# from gym.utils import seeding
 
 logger = logging.getLogger(__name__)
 
@@ -75,9 +75,9 @@ class House():
         # list of possible actions
         # reward
 
-    def seed(self, seed=None):
-        self.np_random, seed = seeding.np_random(seed)
-        return [seed]
+    # def seed(self, seed=None):
+    #     self.np_random, seed = seeding.np_random(seed)
+    #     return [seed]
 
     def step(self, state, action_request, action_accept):
         # how actions changes the states?
