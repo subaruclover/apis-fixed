@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 #  fixed scenario control of APIS
 
@@ -60,7 +61,7 @@ start_time = time.time()  # remember when we started
 # need to refresh the output data every 5s? time.sleep()
 # def run_file(agent):
 while (time.time() - start_time) < max_time:
-    #not gl.sema:  # True, alter for different time periods
+    # not gl.sema:  # True, alter for different time periods
     # # refresh every 5 seconds
     # time.sleep(5)
     # read variables from /get/log url
