@@ -17,12 +17,15 @@ Aim to calculate the p2 (powermeter value) of houses as a baseline (default valu
 """
 import time
 # from threading import Thread
+import os
 
 import requests, json
 import numpy as np
 from matplotlib import pyplot as plt
 import seaborn as sns
 sns.set(style="whitegrid")
+
+import pandas as pd
 
 import global_var as gl
 import config as conf
@@ -54,7 +57,7 @@ load_list = []
 p2_list = []
 rsoc_list = []
 
-max_time = 120  # int(input('Enter the amount of seconds you want to run this: '))
+max_time = int(input('Enter the amount of seconds you want to run this: '))
 # 21,600, 6hrs
 start_time = time.time()  # remember when we started
 
@@ -107,6 +110,7 @@ while (time.time() - start_time) < max_time:
         #     x_e001 = np.concatenate([pv_e001, load_e001, p2_e001, rsoc_e001], axis=-1)
         #     # print(x_e001)  # [39.14 575.58 734.    29.98] E001
 
+# PLOT Houses data
 rows_e001 = list(range(0, agent.memory_size, 4))
 rows_e002 = [x+1 for x in rows_e001]
 rows_e003 = [x+2 for x in rows_e001]
@@ -132,6 +136,19 @@ load_e004 = agent.memory[rows_e004, 1]
 p2_e004 = agent.memory[rows_e004, 2]
 rsoc_e004 = agent.memory[rows_e004, 3]
 
+"""
+Save data into csv files
+"""
+# export to csv files
+new_path = os.getcwd()
+filename = "sample_acc_60.csv"
+pd.DataFrame(agent.memory).to_csv(os.path.join(new_path, filename), index=False)
+# agent.memory.to_csv(os.path.join(new_path, filename), index=False)
+# pd.DataFrame(np_array).to_csv("path/to/file.csv")
+
+"""
+Plot data
+"""
 # fig, axs = plt.subplots(2, 2, figsize=(12, 12))
 fig, ((ax0, ax1), (ax2, ax3)) = plt.subplots(2, 2, figsize=(12, 12))
 ax0_2 = ax0.twinx()
