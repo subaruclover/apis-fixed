@@ -57,7 +57,8 @@ load_list = []
 p2_list = []
 rsoc_list = []
 
-max_time = int(input('Enter the amount of seconds you want to run this: '))
+# max_time: 10,080s -> 2.8hr in run time, 168hr(7 days) in real time when acc=60, sleep=60s
+max_time = 10080  # int(input('Enter the amount of seconds you want to run this: '))
 # 21,600, 6hrs
 start_time = time.time()  # remember when we started
 
@@ -148,7 +149,7 @@ pd.DataFrame(agent.memory).to_csv(os.path.join(new_path, filename), index=False)
 
 """
 Plot data
-"""
+
 # fig, axs = plt.subplots(2, 2, figsize=(12, 12))
 fig, ((ax0, ax1), (ax2, ax3)) = plt.subplots(2, 2, figsize=(12, 12))
 ax0_2 = ax0.twinx()
@@ -200,3 +201,4 @@ ax3.legend(plots_e004, labels_e004, loc='best')
 ax3_2.set_ylabel(" % ")
 
 plt.show()
+"""
