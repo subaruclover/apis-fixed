@@ -142,7 +142,7 @@ Save data into csv files
 """
 # export to csv files
 new_path = os.getcwd()
-filename = "sample_acc_60.csv"
+filename = "sample_acc_60.csv"  # 168*4 points data saved
 pd.DataFrame(agent.memory).to_csv(os.path.join(new_path, filename), index=False)
 # agent.memory.to_csv(os.path.join(new_path, filename), index=False)
 # pd.DataFrame(np_array).to_csv("path/to/file.csv")
