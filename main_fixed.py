@@ -58,7 +58,8 @@ p2_list = []
 rsoc_list = []
 
 # max_time: 10,080s -> 2.8hr in run time, 168hr(7 days) in real time when acc=60, sleep=60s
-max_time = 10080  # int(input('Enter the amount of seconds you want to run this: '))
+# max_time: 60,480s -> 16.8hr in run time, 168hr(7 days) in real time when acc=10, sleep=60s
+max_time = 60480  # int(input('Enter the amount of seconds you want to run this: '))
 # 21,600, 6hrs
 start_time = time.time()  # remember when we started
 
@@ -142,7 +143,8 @@ Save data into csv files
 """
 # export to csv files
 new_path = os.getcwd()
-filename = "sample_acc_60.csv"  # 168*4 points data saved
+# filename = "sample_acc_60.csv"  # 168*4 points data saved
+filename = "sample_acc_10.csv"  # 168*6 points data saved
 pd.DataFrame(agent.memory).to_csv(os.path.join(new_path, filename), index=False)
 # agent.memory.to_csv(os.path.join(new_path, filename), index=False)
 # pd.DataFrame(np_array).to_csv("path/to/file.csv")
