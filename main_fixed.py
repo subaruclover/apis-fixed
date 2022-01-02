@@ -59,7 +59,7 @@ rsoc_list = []
 
 # max_time: 10,080s -> 2.8hr in run time, 168hr(7 days) in real time when acc=60, sleep=60s
 # max_time: 60,480s -> 16.8hr in run time, 168hr(7 days) in real time when acc=10, sleep=60s
-max_time = 60480  # int(input('Enter the amount of seconds you want to run this: '))
+max_time = 30240  # int(input('Enter the amount of seconds you want to run this: '))
 # 21,600, 6hrs
 start_time = time.time()  # remember when we started
 
