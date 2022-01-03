@@ -8,13 +8,14 @@ created by Qiong
 import numpy as np
 from matplotlib import pyplot as plt
 import seaborn as sns
+
 sns.set(style="white")
 
 import pandas as pd
 import os
 import global_var as gl
 
-inputFile = "sample_acc_10.csv"
+inputFile = "sample_acc_30.csv"
 inputData = pd.read_csv(inputFile)
 memory = inputData.to_numpy()
 
@@ -28,9 +29,9 @@ if int(check_acc) == gl.acc:
     print("acc correctly received")
     # PLOT Houses data
     rows_e001 = list(range(0, 10000, 4))
-    rows_e002 = [x+1 for x in rows_e001]
-    rows_e003 = [x+2 for x in rows_e001]
-    rows_e004 = [x+3 for x in rows_e001]
+    rows_e002 = [x + 1 for x in rows_e001]
+    rows_e003 = [x + 2 for x in rows_e001]
+    rows_e004 = [x + 3 for x in rows_e001]
 
     pvc_e001 = memory[rows_e001, 0]
     load_e001 = memory[rows_e001, 1]
@@ -52,7 +53,6 @@ if int(check_acc) == gl.acc:
     p2_e004 = memory[rows_e004, 2]
     rsoc_e004 = memory[rows_e004, 3]
 
-
     """
     Plot data
     """
@@ -64,10 +64,17 @@ if int(check_acc) == gl.acc:
     ax3_2 = ax3.twinx()
     fig.suptitle("The default scenario, E001-E004, acc=%i" % gl.acc)
 
-    pvc_e001_plot = ax0.plot(pvc_e001[:24*7*coeff], 'm*-', label="PV E001")
-    load_e001_plot = ax0.plot(load_e001[:24*7*coeff], 'y--', label="Load E001")
-    p2_e001_plot = ax0.plot(p2_e001[:24*7*coeff], 'b', label="p2 E001")
-    rsoc_e001_plot = ax0_2.plot(rsoc_e001[:24*7*coeff], 'g', label="RSOC E001")
+    pvc_e001_plot = ax0.plot(pvc_e001[:24 * 7 * coeff], 'm*-', label="PV E001")
+    load_e001_plot = ax0.plot(load_e001[:24 * 7 * coeff], 'y--', label="Load E001")
+    p2_e001_plot = ax0.plot(p2_e001[:24 * 7 * coeff], 'b', label="p2 E001")
+    rsoc_e001_plot = ax0_2.plot(rsoc_e001[:24 * 7 * coeff], 'g', label="RSOC E001")
+    # ticks = np.arange(0, 24*7*coeff, 24*coeff)
+    ax0_ticks = ax0.set_xticks(np.linspace(0, 24*7*coeff, 8, endpoint=True))
+    hours = np.round(np.linspace(0, 24*7*coeff, 8, endpoint=True) / coeff).astype(int)
+    label = []
+    for i in range(len(hours)):
+        label.append(str(hours[i]))  # ['0', '24', '48', '72', '96', '120', '144', '168']
+    ax0_labels = ax0.set_xticklabels(label)
     # ax0.set_xlabel("Hour")
     ax0.set_ylabel("Power (W)")
     ax0_2.set_ylabel(" % ")
@@ -75,10 +82,12 @@ if int(check_acc) == gl.acc:
     labels_e001 = [plot.get_label() for plot in plots_e001]
     ax0.legend(plots_e001, labels_e001, loc='upper left')
 
-    pvc_e002_plot = ax1.plot(pvc_e002[:24*7*coeff], 'm*-', label="PV E002")
-    load_e002_plot = ax1.plot(load_e002[:24*7*coeff], 'y--', label="Load E002")
-    p2_e002_plot = ax1.plot(p2_e002[:24*7*coeff], 'b', label="p2 E002")
-    rsoc_e002_plot = ax1_2.plot(rsoc_e002[:24*7*coeff], 'g', label="RSOC E002")
+    pvc_e002_plot = ax1.plot(pvc_e002[:24 * 7 * coeff], 'm*-', label="PV E002")
+    load_e002_plot = ax1.plot(load_e002[:24 * 7 * coeff], 'y--', label="Load E002")
+    p2_e002_plot = ax1.plot(p2_e002[:24 * 7 * coeff], 'b', label="p2 E002")
+    rsoc_e002_plot = ax1_2.plot(rsoc_e002[:24 * 7 * coeff], 'g', label="RSOC E002")
+    ax1_ticks = ax1.set_xticks(np.linspace(0, 24*7*coeff, 8, endpoint=True))
+    ax1_labels = ax1.set_xticklabels(label)
     # ax1.set_xlabel("Hour")
     ax1.set_ylabel("Power (W)")
     ax1_2.set_ylabel(" % ")
@@ -86,11 +95,12 @@ if int(check_acc) == gl.acc:
     labels_e002 = [plot.get_label() for plot in plots_e002]
     ax1.legend(plots_e002, labels_e002, loc='upper left')
 
-
-    pvc_e003_plot = ax2.plot(pvc_e003[:24*7*coeff], 'm*-', label="PV E003")
-    load_e003_plot = ax2.plot(load_e003[:24*7*coeff], 'y--', label="Load E003")
-    p2_e003_plot = ax2.plot(p2_e003[:24*7*coeff], 'b', label="p2 E003")
-    rsoc_e003_plot = ax2_2.plot(rsoc_e003[:24*7*coeff], 'g', label="RSOC E003")
+    pvc_e003_plot = ax2.plot(pvc_e003[:24 * 7 * coeff], 'm*-', label="PV E003")
+    load_e003_plot = ax2.plot(load_e003[:24 * 7 * coeff], 'y--', label="Load E003")
+    p2_e003_plot = ax2.plot(p2_e003[:24 * 7 * coeff], 'b', label="p2 E003")
+    rsoc_e003_plot = ax2_2.plot(rsoc_e003[:24 * 7 * coeff], 'g', label="RSOC E003")
+    ax2_ticks = ax2.set_xticks(np.linspace(0, 24*7*coeff, 8, endpoint=True))
+    ax2_labels = ax2.set_xticklabels(label)
     # ax2.set_xlabel("Hour")
     ax2.set_ylabel("Power (W)")
     ax2_2.set_ylabel(" % ")
@@ -98,10 +108,12 @@ if int(check_acc) == gl.acc:
     labels_e003 = [plot.get_label() for plot in plots_e003]
     ax2.legend(plots_e003, labels_e003, loc='upper left')
 
-    pvc_e004_plot = ax3.plot(pvc_e004[:24*7*coeff], 'm*-', label="PV E004")
-    load_e004_plot = ax3.plot(load_e004[:24*7*coeff], 'y--', label="Load E004")
-    p2_e004_plot = ax3.plot(p2_e004[:24*7*coeff], 'b', label="p2 E004")
-    rsoc_e004_plot = ax3_2.plot(rsoc_e004[:24*7*coeff], 'g', label="RSOC E004")
+    pvc_e004_plot = ax3.plot(pvc_e004[:24 * 7 * coeff], 'm*-', label="PV E004")
+    load_e004_plot = ax3.plot(load_e004[:24 * 7 * coeff], 'y--', label="Load E004")
+    p2_e004_plot = ax3.plot(p2_e004[:24 * 7 * coeff], 'b', label="p2 E004")
+    rsoc_e004_plot = ax3_2.plot(rsoc_e004[:24 * 7 * coeff], 'g', label="RSOC E004")
+    ax3_ticks = ax3.set_xticks(np.linspace(0, 24*7*coeff, 8, endpoint=True))
+    ax3_labels = ax3.set_xticklabels(label)
     ax3.set_xlabel("Hour")
     ax3.set_ylabel("Power (W)")
     ax3_2.set_ylabel(" % ")
@@ -112,3 +124,5 @@ if int(check_acc) == gl.acc:
     plt.show()
 else:
     print("check acc value")
+
+# Compare MSE (or sth. likely) to check different acc
