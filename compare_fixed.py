@@ -12,6 +12,7 @@ sns.set(style="white")
 import pandas as pd
 import os
 import numpy as np
+
 # import global_var as gl
 #
 # coeff = int(60 / gl.acc)
@@ -95,8 +96,10 @@ pvc_e001_plot_acc_300 = ax.plot(pvc_e001_acc_300[:24 * 7 * 6], 'b--', label="PV 
 ax.set_ylabel("Power (W)")
 ax2.set_ylabel(" % ")
 plots_e001 = pvc_e001_plot_acc_10 + pvc_e001_plot_acc_30 + pvc_e001_plot_acc_60 + pvc_e001_plot_acc_300
-    #+ load_e001_plot + p2_e001_plot + rsoc_e001_plot
+# + load_e001_plot + p2_e001_plot + rsoc_e001_plot
 labels_e001 = [plot.get_label() for plot in plots_e001]
 ax.legend(plots_e001, labels_e001, loc='upper left')
 
 plt.show()
+
+# TODO MSE?
