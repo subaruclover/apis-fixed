@@ -123,6 +123,6 @@ if int(check_acc) == gl.acc:
 
     plt.show()
 else:
-    print("check acc value")
+    print("check acc value and try again")
 
 # Compare MSE (or sth. likely) to check different acc

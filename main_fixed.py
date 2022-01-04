@@ -31,6 +31,7 @@ import global_var as gl
 import config as conf
 from agent import APIS, House
 
+print("acc is =%i" % gl.acc)
 agent = APIS()
 env = House()
 
@@ -58,10 +59,10 @@ p2_list = []
 rsoc_list = []
 
 # max_time: 10,080s -> 2.8hr in run time, 168hr(7 days) in real time when acc=60, sleep=60s
-# max_time: 30,240s -> 8.4hr in run time, 168hr(7 days) in real time when acc=30, sleep=60s
+# max_time: 20,160s -> 5.6hr in run time, 168hr(7 days) in real time when acc=30, sleep=60s -> 120s
 # max_time: 60,480s -> 16.8hr in run time, 168hr(7 days) in real time when acc=10, sleep=60s
 # max_time: 2,016s -> 0.56hr in run time, 168hr(7 days) in real time when acc=300, sleep=60s
-max_time = 2016  # int(input('Enter the amount of seconds you want to run this: '))
+max_time = 20160  # int(input('Enter the amount of seconds you want to run this: '))
 # 21,600, 6hrs
 start_time = time.time()  # remember when we started
 
@@ -100,7 +101,11 @@ while (time.time() - start_time) < max_time:
         # refresh every 5 seconds
         # print("\n")
 
-    time.sleep(60)  # 60s
+    time.sleep(120)  # 60s -> shall this value be adjusted w.r.t. gl.acc? sleep time -> one hr in real time
+    # acc = 60, real run time : 1 min == 1 hour in real data time (1 point recorded), sleep(60)
+    # acc = 10, real run time : 6 min == 1 hour in real data time (1 point recorded), sleep(360)
+    # acc = 30, real run time : 2 min == 1 hour in real data time (1 point recorded), sleep(120)
+
     end_time = time.time()
     print("running time: {:.2f} mins".format((end_time - start_time)/60 * gl.acc))  # real time
 
@@ -137,8 +142,8 @@ Save data into csv files
 # export to csv files
 new_path = os.getcwd()
 # filename = "sample_acc_60.csv"  # 168*4 points data saved
-# filename = "sample_acc_30.csv"  # 168*6 points data saved
-filename = "sample_acc_300.csv"  # 5 mins
+filename = "sample_acc_30.csv"  # 168*8 points data saved
+# filename = "sample_acc_300.csv"  # 5 mins
 pd.DataFrame(agent.memory).to_csv(os.path.join(new_path, filename), index=False)
 # agent.memory.to_csv(os.path.join(new_path, filename), index=False)
 # pd.DataFrame(np_array).to_csv("path/to/file.csv")
