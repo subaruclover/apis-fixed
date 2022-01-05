@@ -101,10 +101,11 @@ while (time.time() - start_time) < max_time:
         # refresh every 5 seconds
         # print("\n")
 
-    time.sleep(120)  # 60s -> shall this value be adjusted w.r.t. gl.acc? sleep time -> one hr in real time
-    # acc = 60, real run time : 1 min == 1 hour in real data time (1 point recorded), sleep(60)
+    # sleepTime = 3600 / gl.acc
+    time.sleep(60)  # 60s -> shall this value be adjusted w.r.t. gl.acc? sleep time -> one hr in real time
+    # acc = 60, real run time : 1 min == 1 hour in real data time (1 point recorded), sleep(60), 672 points(168*4)
     # acc = 10, real run time : 6 min == 1 hour in real data time (1 point recorded), sleep(360)
-    # acc = 30, real run time : 2 min == 1 hour in real data time (1 point recorded), sleep(120)
+    # acc = 30, real run time : 2 min == 1 hour in real data time (1 point recorded), sleep(120), 672 points(168*4)
 
     end_time = time.time()
     print("running time: {:.2f} mins".format((end_time - start_time)/60 * gl.acc))  # real time
