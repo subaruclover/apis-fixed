@@ -15,7 +15,7 @@ import pandas as pd
 import os
 import global_var as gl
 
-inputFile = "sample_acc_30.csv"
+inputFile = "sample_acc_60.csv"
 inputData = pd.read_csv(inputFile)
 memory = inputData.to_numpy()
 

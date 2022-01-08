@@ -62,7 +62,7 @@ rsoc_list = []
 # max_time: 20,160s -> 5.6hr in run time, 168hr(7 days) in real time when acc=30, sleep=60s -> 120s
 # max_time: 60,480s -> 16.8hr in run time, 168hr(7 days) in real time when acc=10, sleep=60s
 # max_time: 2,016s -> 0.56hr in run time, 168hr(7 days) in real time when acc=300, sleep=60s
-max_time = 20160  # int(input('Enter the amount of seconds you want to run this: '))
+max_time = 525600  # int(input('Enter the amount of seconds you want to run this: '))
 # 21,600, 6hrs
 start_time = time.time()  # remember when we started
 
@@ -142,8 +142,8 @@ Save data into csv files
 """
 # export to csv files
 new_path = os.getcwd()
-# filename = "sample_acc_60.csv"  # 168*4 points data saved
-filename = "sample_acc_30.csv"  # 168*8 points data saved
+filename = "sample_acc_60_oneyr.csv"  # 168*4 points data saved
+# filename = "sample_acc_30.csv"  # 168*8 points data saved
 # filename = "sample_acc_300.csv"  # 5 mins
 pd.DataFrame(agent.memory).to_csv(os.path.join(new_path, filename), index=False)
 # agent.memory.to_csv(os.path.join(new_path, filename), index=False)
