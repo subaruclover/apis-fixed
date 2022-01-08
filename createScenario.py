@@ -114,7 +114,7 @@ class CreateScenario():
             # }
 
         }
-        self.filename1 = "scenario.json"
+        self.filename1 = "scenario1.json"
         self.filename2 = "scenario2.json"
         self.filename3 = "scenario3.json"
         self.filename4 = "scenario4.json"
