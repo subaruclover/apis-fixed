@@ -4,7 +4,7 @@ input data files: .csv files with one week data from sample data
 House ID: E001 ~ E004
 created by Qiong
 
-TODO: plot the sample data (from apis-emulator/data/input/Sample) and compare it with our acc data
+TODO: plot the sample data (from apis-emulator/data/input/Sample) and compare it with our acc data (try: compare p2)
 """
 
 import numpy as np
