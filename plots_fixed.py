@@ -3,6 +3,8 @@ Show the results of different acc with plots
 input data files: .csv files with one week data from sample data
 House ID: E001 ~ E004
 created by Qiong
+
+TODO: plot the sample data (from apis-emulator/data/input/Sample) and compare it with our acc data
 """
 
 import numpy as np
